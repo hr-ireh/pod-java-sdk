@@ -1,0 +1,84 @@
+package com.fanap.podBank.data.modelSrv;
+
+import com.fanap.podBaseService.exception.PodException;
+import com.fanap.podBaseService.util.JsonUtil;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONObject;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.List;
+
+public class GetDepositInvoiceSrv {
+
+    private String result;
+    private Header header;
+    private long statusCode;
+    private JSONObject jsonObject;
+
+    public BankingResult<List<GetDepositInvoiceContentSrv>> getResult() throws PodException {
+        DocumentBuilder db = null;
+        try {
+            db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+        InputSource is = new InputSource();
+        is.setCharacterStream(new StringReader(result));
+        Document doc = null;
+        try {
+            doc = db.parse(is);
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String ss = doc.getElementsByTagName("GetDepositInvoiceResult").item(0).getTextContent();
+        jsonObject = JsonUtil.getJsonObject(ss);
+        ObjectMapper mapper = new ObjectMapper();
+        BankingResult<List<GetDepositInvoiceContentSrv>> bankingResult = null;
+        try {
+            bankingResult = mapper.readValue(jsonObject.toString(), new TypeReference<BankingResult<List<GetDepositInvoiceContentSrv>>>() {
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (bankingResult.getIsSuccess() == false)
+            throw PodException.developerException(bankingResult.getMessageCode(), bankingResult.getMessage());
+        return bankingResult;
+    }
+
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+
+    public Header getHeader() {
+        return header;
+    }
+
+
+    public void setHeader(Header header) {
+        this.header = header;
+    }
+
+
+    public long getStatusCode() {
+        return statusCode;
+    }
+
+
+    public void setStatusCode(long statusCode) {
+        this.statusCode = statusCode;
+    }
+
+
+}
