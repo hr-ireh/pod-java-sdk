@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.fanap.podVirtualAcount</groupId>
-    <artifactId>PodVirtualAcount</artifactId>
+    <groupId>com.fanap.podVirtualAccount</groupId>
+    <artifactId>PodVirtualAccount</artifactId>
     <packaging>jar</packaging>
     <version>2.0.0.0</version>
-    <name>PodVirtualAcount</name>
+    <name>PodVirtualAccount</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -130,7 +130,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        com.fanap.podVirtualAcount.controller.PodVirtualAcount
+                                        com.fanap.podVirtualAccount.controller.PodVirtualAccount
                                     </mainClass>
                                 </manifest>
                             </archive>

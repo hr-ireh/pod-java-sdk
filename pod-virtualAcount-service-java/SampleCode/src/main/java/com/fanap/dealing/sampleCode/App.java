@@ -2,21 +2,22 @@ package com.fanap.dealing.sampleCode;
 
 import com.fanap.podBaseService.enums.Enum_Server_type;
 import com.fanap.podBaseService.exception.PodException;
-import com.fanap.podVirtualAcount.controller.PodVirtualAcount;
-import com.fanap.podVirtualAcount.data.modelSrv.*;
-import com.fanap.podVirtualAcount.data.modelVo.*;
-import com.fanap.podVirtualAcount.enums.Enum_Tool_Code;
-import com.fanap.podVirtualAcount.util.OnGetResponseListener;
+import com.fanap.podVirtualAccount.controller.PodVirtualAccount;
+import com.fanap.podVirtualAccount.data.modelSrv.*;
+import com.fanap.podVirtualAccount.data.modelVo.*;
+import com.fanap.podVirtualAccount.enums.EnumTypeCode;
+import com.fanap.podVirtualAccount.enums.Enum_Tool_Code;
+import com.fanap.podVirtualAccount.util.OnGetResponseListener;
 
 import java.util.List;
 
 /**
- * Created by Shahab Askarian on 5/28/2019.
+ * Created by Zahra Golinia on 2/4/2019.
  */
 
 public class App {
 
-    private static String TOKEN = "1c0898d03cef4c0a80741653aaa1b8ad";
+    private static String TOKEN = "";
     private static String GUILD_CODE = "INFORMATION_TECHNOLOGY_GUILD";
 
     public static void main(String[] args) {
@@ -42,6 +43,14 @@ public class App {
 //        getAccountBillAsFile();
 //        cardToCardList();
 //        updateCardToCard();
+//        addWithdrawRulePlan();
+//        withdrawRulePlanList();
+//        issueWithdrawRuleByPlan();
+//        issueWithdrawRule();
+//        withdrawRuleList();
+//        revokeWithdrawRule();
+//        payInvoiceByCredit();
+//        withdrawRuleUsageReport();
     }
 
     private static void issueCreditInvoiceAndGetHash() {
@@ -55,7 +64,7 @@ public class App {
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
 
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
@@ -66,7 +75,7 @@ public class App {
                     .setWallet("PODLAND_WALLET")
                     .setUserId(7001L)
                     .build();
-            podVirtualAcount.issueCreditInvoiceAndGetHash(issueCreditInvoiceAndGetHashVo, new OnGetResponseListener<String>() {
+            podVirtualAccount.issueCreditInvoiceAndGetHash(issueCreditInvoiceAndGetHashVo, new OnGetResponseListener<String>() {
                 @Override
                 public void onResponse(ResultVo<String> result) {
                     System.out.println(result.getResult());
@@ -95,14 +104,14 @@ public class App {
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
 
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
             VerifyCreditInvoiceVo verifyCreditInvoiceVo = new VerifyCreditInvoiceVo.Builder(baseInfoVo)
                     .setBillNumber("987")
                     .build();
-            podVirtualAcount.verifyCreditInvoice(verifyCreditInvoiceVo, new OnGetResponseListener<CreditInvoiceSrv>() {
+            podVirtualAccount.verifyCreditInvoice(verifyCreditInvoiceVo, new OnGetResponseListener<CreditInvoiceSrv>() {
                 @Override
                 public void onResponse(ResultVo<CreditInvoiceSrv> result) {
                     System.out.println(result.getResult());
@@ -130,7 +139,7 @@ public class App {
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
 
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
         GuildAmount[] guildAmounts = {new GuildAmount("ENGINEERING_GUILD", 100L), new GuildAmount("SCENARIST_GUILD", 500L)};
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
@@ -138,7 +147,7 @@ public class App {
             TransferFromOwnAccountsVo transferFromOwnAccountsVo = new TransferFromOwnAccountsVo.Builder(baseInfoVo)
                     .setGuildAmount(guildAmounts)
                     .build();
-            podVirtualAcount.transferFromOwnAccounts(transferFromOwnAccountsVo, new OnGetResponseListener<UserAmountSrv>() {
+            podVirtualAccount.transferFromOwnAccounts(transferFromOwnAccountsVo, new OnGetResponseListener<UserAmountSrv>() {
                 @Override
                 public void onResponse(ResultVo<UserAmountSrv> result) {
                     System.out.println(result.getResult());
@@ -165,7 +174,7 @@ public class App {
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
 
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
@@ -174,7 +183,7 @@ public class App {
                     .setSize(50)
                     .setFromDate("1376/05/09")
                     .build();
-            podVirtualAcount.transferFromOwnAccountsList(transferFromOwnAccountsListVo, new OnGetResponseListener<List<TransferCreditSrv>>() {
+            podVirtualAccount.transferFromOwnAccountsList(transferFromOwnAccountsListVo, new OnGetResponseListener<List<TransferCreditSrv>>() {
                 @Override
                 public void onResponse(ResultVo<List<TransferCreditSrv>> result) {
                     System.out.println(result.getResult().get(0).getId());
@@ -202,7 +211,7 @@ public class App {
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
 
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
@@ -210,7 +219,7 @@ public class App {
                     .setAmount(100L)
                     .setContactId(1455684L)
                     .build();
-            podVirtualAcount.transferToContact(transferToContactVo, new OnGetResponseListener<TransferToContactSrv>() {
+            podVirtualAccount.transferToContact(transferToContactVo, new OnGetResponseListener<TransferToContactSrv>() {
                 @Override
                 public void onResponse(ResultVo<TransferToContactSrv> result) {
                     System.out.println(result.getResult().getId());
@@ -237,7 +246,7 @@ public class App {
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
 
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
@@ -245,7 +254,7 @@ public class App {
                     .setOffset(0)
                     .setSize(50)
                     .build();
-            podVirtualAcount.transferToContactList(transferToContactListVo, new OnGetResponseListener<List<TransferToContactSrv>>() {
+            podVirtualAccount.transferToContactList(transferToContactListVo, new OnGetResponseListener<List<TransferToContactSrv>>() {
                 @Override
                 public void onResponse(ResultVo<List<TransferToContactSrv>> result) {
                     System.out.println(result.getResult().size());
@@ -273,15 +282,15 @@ public class App {
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
 
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
             FollowVo followVo = new FollowVo.Builder(baseInfoVo)
-                    .setBusinessId(7867L)
+                    .setBusinessId(4821L)
                     .setFollow(true)
                     .build();
-            podVirtualAcount.follow(followVo, new OnGetResponseListener<Boolean>() {
+            podVirtualAccount.follow(followVo, new OnGetResponseListener<Boolean>() {
                 @Override
                 public void onResponse(ResultVo<Boolean> result) {
                     System.out.println(result.getResult());
@@ -308,13 +317,13 @@ public class App {
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
 
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
             GetBusinessVo getBusinessVo = new GetBusinessVo.Builder(baseInfoVo)
                     .build();
-            podVirtualAcount.getBusiness(getBusinessVo, new OnGetResponseListener<BusinessSrv>() {
+            podVirtualAccount.getBusiness(getBusinessVo, new OnGetResponseListener<BusinessSrv>() {
                 @Override
                 public void onResponse(ResultVo<BusinessSrv> result) {
                     System.out.println(result.getResult().getId());
@@ -341,7 +350,7 @@ public class App {
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
 
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
@@ -349,7 +358,7 @@ public class App {
                     .setOffset(0)
                     .setSize(50)
                     .build();
-            podVirtualAcount.getFollowers(getFollowersVo, new OnGetResponseListener<List<UserSrv>>() {
+            podVirtualAccount.getFollowers(getFollowersVo, new OnGetResponseListener<List<UserSrv>>() {
                 @Override
                 public void onResponse(ResultVo<List<UserSrv>> result) {
                     System.out.println(result.getResult().get(0).getId());
@@ -377,7 +386,7 @@ public class App {
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
 
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
@@ -388,7 +397,7 @@ public class App {
                     .setUserId(7001L)
                     .setWallet("PODLAND_WALLET")
                     .build();
-            podVirtualAcount.transferToFollower(transferToFollowerVo, new OnGetResponseListener<UserAmountSrv>() {
+            podVirtualAccount.transferToFollower(transferToFollowerVo, new OnGetResponseListener<UserAmountSrv>() {
                 public void onResponse(ResultVo<UserAmountSrv> result) {
                     System.out.println(result.getResult().getCustomerAmountSrvs().get(0).getAmount());
                 }
@@ -414,7 +423,7 @@ public class App {
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
 
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
@@ -426,7 +435,7 @@ public class App {
                     .setWallet("PODLAND_WALLET")
                     .setToolCode(Enum_Tool_Code.SETTLEMENT_TOOL_CARD.getToolCode())
                     .build();
-            podVirtualAcount.transferToFollowerAndCashout(transferToFollowerAndCashoutVo, new OnGetResponseListener<UserAmountSrv>() {
+            podVirtualAccount.transferToFollowerAndCashout(transferToFollowerAndCashoutVo, new OnGetResponseListener<UserAmountSrv>() {
                 public void onResponse(ResultVo<UserAmountSrv> result) {
                     System.out.println(result.getResult().getCustomerAmountSrvs().get(0).getActive());
                 }
@@ -452,7 +461,7 @@ public class App {
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
 
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
@@ -460,7 +469,7 @@ public class App {
                     .setOffset(0)
                     .setSize(50)
                     .build();
-            podVirtualAcount.transferToFollowerList(transferToFollowerListVo, new OnGetResponseListener<List<TransferToFollowerSrv>>() {
+            podVirtualAccount.transferToFollowerList(transferToFollowerListVo, new OnGetResponseListener<List<TransferToFollowerSrv>>() {
                 public void onResponse(ResultVo<List<TransferToFollowerSrv>> result) {
                     System.out.println(result.getResult().get(0).getId());
                 }
@@ -487,7 +496,7 @@ public class App {
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
 
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
@@ -498,7 +507,7 @@ public class App {
                     .setGuildCode("ENGINEERING_GUILD")
 //                    .setWallet("PODLAND_WALLET")
                     .build();
-            podVirtualAcount.transferByInvoice(transferByInvoiceVo, new OnGetResponseListener<UserAmountSrv>() {
+            podVirtualAccount.transferByInvoice(transferByInvoiceVo, new OnGetResponseListener<UserAmountSrv>() {
                 @Override
                 public void onResponse(ResultVo<UserAmountSrv> result) {
                     System.out.println(result.getResult().getCustomerAmountSrvs().get(0).getAmount());
@@ -526,7 +535,7 @@ public class App {
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
 
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
@@ -534,7 +543,7 @@ public class App {
                     .setOffset(0)
                     .setSize(50)
                     .build();
-            podVirtualAcount.listTransferByInvoice(listTransferByInvoiceVo, new OnGetResponseListener<List<TransferToFollowerSrv>>() {
+            podVirtualAccount.listTransferByInvoice(listTransferByInvoiceVo, new OnGetResponseListener<List<TransferToFollowerSrv>>() {
                 @Override
                 public void onResponse(ResultVo<List<TransferToFollowerSrv>> result) {
                     System.out.println(result.getResult().get(0).getId());
@@ -561,7 +570,7 @@ public class App {
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
 
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
@@ -569,7 +578,7 @@ public class App {
                     .setOffset(0)
                     .setSize(50)
                     .build();
-            podVirtualAcount.getGuildAccountBill(getGuildAccountBillVo, new OnGetResponseListener<List<AccountBillItemSrv>>() {
+            podVirtualAccount.getGuildAccountBill(getGuildAccountBillVo, new OnGetResponseListener<List<AccountBillItemSrv>>() {
                 @Override
                 public void onResponse(ResultVo<List<AccountBillItemSrv>> result) {
                     System.out.println(result.getResult().get(0).getInvoiceId());
@@ -596,7 +605,7 @@ public class App {
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
 
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
@@ -605,7 +614,7 @@ public class App {
                     .setSize(55)
                     .setWallet("PODLAND_WALLET")
                     .build();
-            podVirtualAcount.getWalletAccountBill(GetWalletAccountBillVo, new OnGetResponseListener<List<AccountBillItemSrv>>() {
+            podVirtualAccount.getWalletAccountBill(GetWalletAccountBillVo, new OnGetResponseListener<List<AccountBillItemSrv>>() {
                 @Override
                 public void onResponse(ResultVo<List<AccountBillItemSrv>> result) {
                     System.out.println(result.getResult().size());
@@ -632,7 +641,7 @@ public class App {
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
 
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
@@ -640,7 +649,7 @@ public class App {
 //                    .setDateFrom("1379/06/24")
                     .setDateTo("1398/06/24")
                     .build();
-            podVirtualAcount.getAccountBillAsFile(getAccountBillAsFileVo, new OnGetResponseListener<ExportServiceSrv>() {
+            podVirtualAccount.getAccountBillAsFile(getAccountBillAsFileVo, new OnGetResponseListener<ExportServiceSrv>() {
                 @Override
                 public void onResponse(ResultVo<ExportServiceSrv> result) {
                     System.out.println(result.getResult().getId());
@@ -666,7 +675,7 @@ public class App {
 //                .setScApiKey("")
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
@@ -674,7 +683,7 @@ public class App {
                     .setOffset(0)
                     .setSize(50)
                     .build();
-            podVirtualAcount.cardToCardList(cardToCardListVo, new OnGetResponseListener<List<CardToCardPoolSrv>>() {
+            podVirtualAccount.cardToCardList(cardToCardListVo, new OnGetResponseListener<List<CardToCardPoolSrv>>() {
                 @Override
                 public void onResponse(ResultVo<List<CardToCardPoolSrv>> result) {
                     System.out.println(result.getResult().size());
@@ -700,7 +709,7 @@ public class App {
 //                .setScApiKey("")
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
@@ -708,7 +717,7 @@ public class App {
                     .setCardNumber("5022147896325874")
                     .setId(54545L)
                     .build();
-            podVirtualAcount.updateCardToCard(updateCardToCardVo, new OnGetResponseListener<List<CardToCardPoolSrv>>() {
+            podVirtualAccount.updateCardToCard(updateCardToCardVo, new OnGetResponseListener<List<CardToCardPoolSrv>>() {
                 @Override
                 public void onResponse(ResultVo<List<CardToCardPoolSrv>> result) {
                     System.out.println(result.getResult().size());
@@ -734,7 +743,7 @@ public class App {
 //                .setScApiKey("")
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
@@ -760,7 +769,7 @@ public class App {
 //                .setScApiKey("")
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
-        PodVirtualAcount podVirtualAcount = new PodVirtualAcount();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
 //        List<String> scVoucherHashs=new ArrayList<>();
 //        scVoucherHashs.add("ghjdshfjshf");
         try {
@@ -775,6 +784,255 @@ public class App {
         }
         return null;
     }
+    private static void addWithdrawRulePlan() {
+//        List<String> scVoucherHashs=new ArrayList<>();
+//        scVoucherHashs.add("ghjdshfjshf");
+        BaseInfoVo baseInfoVo = new BaseInfoVo.Builder()
+                .setToken(TOKEN)
+                .setToken_issuer(1)
+                .setServerType(Enum_Server_type.SANDBOX)
+//                .setScApiKey("")
+//                .setScVoucherHash(scVoucherHashs)
+                .build();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
+//        List<String> scVoucherHashs=new ArrayList<>();
+//        scVoucherHashs.add("ghjdshfjshf");
+        try {
+            AddWithdrawRulePlanVo addWithdrawRulePlanVo = new AddWithdrawRulePlanVo.Builder(baseInfoVo)
+                    .setMaxAmount(1L)
+                    .setMaxCount(1L)
+                    .setSubscriptionDays(1)
+                    .setTypeCode(EnumTypeCode.WITHDRAW_RULE_TYPE_AMOUNT)
+                    .build();
+            podVirtualAccount.addWithdrawRulePlan(addWithdrawRulePlanVo, new OnGetResponseListener<WithdrawRuleSrv>() {
+                @Override
+                public void onResponse(ResultVo<WithdrawRuleSrv> result) {
+                    System.out.println(result.getResult().getId());
+                    System.out.println(result.getResult().getBusiness().getId());
+                }
+                @Override
+                public void onFailed(PodException e) {
+                    System.out.println("code : " + e.getCode() + "\nmessage : " + e.getMessage());
+                }
+            });
+        } catch (PodException e) {
+            System.out.println("code : " + e.getCode() + "\nmessage : " + e.getMessage());
+        }
+    }
 
+    private static void withdrawRulePlanList() {
+        BaseInfoVo baseInfoVo = new BaseInfoVo.Builder()
+                .setToken(TOKEN)
+                .setToken_issuer(1)
+                .setServerType(Enum_Server_type.SANDBOX)
+                .build();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
+        try {
+            WithdrawRulePlanListVo withdrawRulePlanListVo = new WithdrawRulePlanListVo.Builder(baseInfoVo)
+                    .setBusinessId(9371L)
+                    .setId(4161L)
+                    .setOffset(0)
+                    .setSize(10)
+                    .build();
+            podVirtualAccount.withdrawRulePlanList(withdrawRulePlanListVo, new OnGetResponseListener<List<WithdrawRulePlanSrv>>() {
+                @Override
+                public void onResponse(ResultVo<List<WithdrawRulePlanSrv>> result) {
+                    System.out.println(result.getResult().size());
+                }
+
+                @Override
+                public void onFailed(PodException e) {
+                    System.out.println("code : " + e.getCode() + "\nmessage : " + e.getMessage());
+                }
+            });
+        } catch (PodException e) {
+            System.out.println("code : " + e.getCode() + "\nmessage : " + e.getMessage());
+        }
+    }
+
+    private static String issueWithdrawRuleByPlan() {
+//        List<String> scVoucherHashs=new ArrayList<>();
+//        scVoucherHashs.add("ghjdshfjshf");
+        BaseInfoVo baseInfoVo = new BaseInfoVo.Builder()
+                .setToken(TOKEN)
+                .setToken_issuer(1)
+                .setServerType(Enum_Server_type.SANDBOX)
+//                .setScApiKey("")
+//                .setScVoucherHash(scVoucherHashs)
+                .build();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
+//        List<String> scVoucherHashs=new ArrayList<>();
+//        scVoucherHashs.add("ghjdshfjshf");
+        try {
+            IssueWithdrawRuleByPlanVo issueWithdrawRuleByPlanVo = new IssueWithdrawRuleByPlanVo.Builder(baseInfoVo)
+                    .setPlanId(4329L)
+                    .setBusinessId(9371L)
+                    .setCallUri("https://www.google.com/")
+                    .setRedirectUri("https://www.google.com/")
+                    .build();
+            System.out.println(issueWithdrawRuleByPlanVo.getLink());
+            return issueWithdrawRuleByPlanVo.getLink();
+        } catch (PodException e) {
+            System.out.println("code : " + e.getCode() + "\nmessage : " + e.getMessage());
+        }
+        return null;
+    }
+
+    private static String issueWithdrawRule() {
+//        List<String> scVoucherHashs=new ArrayList<>();
+//        scVoucherHashs.add("ghjdshfjshf");
+        BaseInfoVo baseInfoVo = new BaseInfoVo.Builder()
+                .setToken(TOKEN)
+                .setToken_issuer(1)
+                .setServerType(Enum_Server_type.PRODUCTION)
+//                .setScApiKey("")
+//                .setScVoucherHash(scVoucherHashs)
+                .build();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
+//        List<String> scVoucherHashs=new ArrayList<>();
+//        scVoucherHashs.add("ghjdshfjshf");
+        try {
+            IssueWithdrawRuleVo issueWithdrawRuleVo = new IssueWithdrawRuleVo.Builder(baseInfoVo)
+                    .setBusinessId(7811L)
+                    .setCallUri("https://www.google.com/")
+                    .setRedirectUri("https://www.google.com/")
+                    .build();
+            System.out.println(issueWithdrawRuleVo.getLink());
+            return issueWithdrawRuleVo.getLink();
+        } catch (PodException e) {
+            System.out.println("code : " + e.getCode() + "\nmessage : " + e.getMessage());
+        }
+        return null;
+    }
+
+    private static void withdrawRuleList() {
+//        List<String> scVoucherHashs=new ArrayList<>();
+//        scVoucherHashs.add("ghjdshfjshf");
+        BaseInfoVo baseInfoVo = new BaseInfoVo.Builder()
+                .setToken(TOKEN)
+                .setToken_issuer(1)
+                .setServerType(Enum_Server_type.SANDBOX)
+//                .setScApiKey("")
+//                .setScVoucherHash(scVoucherHashs)
+                .build();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
+//        List<String> scVoucherHashs=new ArrayList<>();
+//        scVoucherHashs.add("ghjdshfjshf");
+        try {
+            WithdrawRuleListVo withdrawRuleListVo = new WithdrawRuleListVo.Builder(baseInfoVo)
+                    .setOffset(0)
+                    .setSize(10)
+                    .setUserId(7001L)
+                    .build();
+            podVirtualAccount.withdrawRuleList(withdrawRuleListVo, new OnGetResponseListener<List<WithdrawRuleForBizSrv>>() {
+                @Override
+                public void onResponse(ResultVo<List<WithdrawRuleForBizSrv>> result) {
+                    System.out.println(result.getResult().get(0).getId());
+                }
+
+                @Override
+                public void onFailed(PodException e) {
+                    System.out.println("code : " + e.getCode() + "\nmessage : " + e.getMessage());
+                }
+            });
+        } catch (PodException e) {
+            System.out.println("code : " + e.getCode() + "\nmessage : " + e.getMessage());
+        }
+    }
+
+
+    private static void revokeWithdrawRule() {
+//        List<String> scVoucherHashs=new ArrayList<>();
+//        scVoucherHashs.add("ghjdshfjshf");
+        BaseInfoVo baseInfoVo = new BaseInfoVo.Builder()
+                .setToken(TOKEN)
+                .setToken_issuer(1)
+                .setServerType(Enum_Server_type.SANDBOX)
+//                .setScApiKey("")
+//                .setScVoucherHash(scVoucherHashs)
+                .build();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
+//        List<String> scVoucherHashs=new ArrayList<>();
+//        scVoucherHashs.add("ghjdshfjshf");
+        try {
+            RevokeWithdrawRuleVo revokeWithdrawRuleVo = new RevokeWithdrawRuleVo.Builder(baseInfoVo)
+                    .setRuleId(2874L)
+                    .build();
+            podVirtualAccount.revokeWithdrawRule(revokeWithdrawRuleVo, new OnGetResponseListener<Boolean>() {
+                @Override
+                public void onResponse(ResultVo<Boolean> result) {
+                    System.out.println(result.getResult());
+                }
+
+                @Override
+                public void onFailed(PodException e) {
+                    System.out.println("code : " + e.getCode() + "\nmessage : " + e.getMessage());
+                }
+            });
+        } catch (PodException e) {
+            System.out.println("code : " + e.getCode() + "\nmessage : " + e.getMessage());
+        }
+    }
+    private static void payInvoiceByCredit() {
+//        List<String> scVoucherHashs=new ArrayList<>();
+//        scVoucherHashs.add("ghjdshfjshf");
+        BaseInfoVo baseInfoVo = new BaseInfoVo.Builder()
+                .setToken("")
+                .setToken_issuer(1)
+                .setServerType(Enum_Server_type.PRODUCTION)
+                .setOtt("836a4d52d9c3c6a1")
+                .build();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
+        try {
+            PayInvoiceByCreditVo payInvoiceByCreditVo = new PayInvoiceByCreditVo.Builder(baseInfoVo)
+                    .setInvoiceId(64318L)
+                    .build();
+            podVirtualAccount.payInvoiceByCredit(payInvoiceByCreditVo, new OnGetResponseListener<Boolean>() {
+                @Override
+                public void onResponse(ResultVo<Boolean> result) {
+                    System.out.println(result.getResult());
+                }
+                @Override
+                public void onFailed(PodException e) {
+                    System.out.println("code : " + e.getCode() + "\nmessage : " + e.getMessage());
+                }
+            });
+        } catch (PodException e) {
+            System.out.println("code : " + e.getCode() + "\nmessage : " + e.getMessage());
+        }
+    }
+
+    private static void withdrawRuleUsageReport() {
+//        List<String> scVoucherHashs=new ArrayList<>();
+//        scVoucherHashs.add("ghjdshfjshf");
+        BaseInfoVo baseInfoVo = new BaseInfoVo.Builder()
+                .setToken("")
+                .setToken_issuer(1)
+                .setServerType(Enum_Server_type.SANDBOX)
+//                .setScApiKey("")
+//                .setScVoucherHash(scVoucherHashs)
+                .build();
+        PodVirtualAccount podVirtualAccount = new PodVirtualAccount();
+//        List<String> scVoucherHashs=new ArrayList<>();
+//        scVoucherHashs.add("ghjdshfjshf");
+        try {
+            WithdrawRuleUsageReportVo withdrawRuleUsageReportVo = new WithdrawRuleUsageReportVo.Builder(baseInfoVo)
+                    .setRuleId(2874L)
+                    .build();
+            podVirtualAccount.withdrawRuleUsageReport(withdrawRuleUsageReportVo, new OnGetResponseListener<WithdrawRuleUsageReportSrv>() {
+                @Override
+                public void onResponse(ResultVo<WithdrawRuleUsageReportSrv> result) {
+                    System.out.println(result.getResult().getRule().getId());
+                }
+
+                @Override
+                public void onFailed(PodException e) {
+                    System.out.println("code : " + e.getCode() + "\nmessage : " + e.getMessage());
+                }
+            });
+        } catch (PodException e) {
+            System.out.println("code : " + e.getCode() + "\nmessage : " + e.getMessage());
+        }
+    }
 }
 
