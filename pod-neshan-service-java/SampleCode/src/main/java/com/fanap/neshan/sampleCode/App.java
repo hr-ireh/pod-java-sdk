@@ -10,25 +10,23 @@ import com.fanap.podNeshan.util.Point;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.fanap.podNeshan.util.Keys.API_KEY;
+import static com.fanap.podNeshan.util.Keys.TOKEN;
+
 /**
  * Created by Z.gholinia on 9/22/2019.
  */
 
 public class App {
-
-    private static String TOKEN = "55c549bc0108451cbb9e6c3f8cd992a9";
-    private static String API_KEY = "328a2508178d4d16b769712917c16dcc";
-
-
     public static void main(String[] args) {
 
-        search();
-        reverseGeo();
-        direction();
-        noTrafficDirection();
-        distanceMatrix();
-        noTrafficDistanceMatrix();
-        mapMatching();
+//        search();
+//        reverseGeo();
+//        direction();
+//        noTrafficDirection();
+//        distanceMatrix();
+//        noTrafficDistanceMatrix();
+//        mapMatching();
     }
 
 
@@ -41,6 +39,7 @@ public class App {
                 .setScApiKey(API_KEY)
 //                .setScVoucherHash(scVoucherHashs)
                 .build();
+
         PodNeshan podNeshan = new PodNeshan();
 
 
@@ -89,7 +88,7 @@ public class App {
             podNeshan.reverseGeo(reverseGeoVo, new OnGetResponseListener<ReverseGeoSrv>() {
                 @Override
                 public void onResponse(ResultVo<ReverseGeoSrv> result) {
-                    System.out.println(result.getResult().getResult().getRouteName());
+                    System.out.println(result.getResult().getResult().getCity());
                 }
 
                 @Override
