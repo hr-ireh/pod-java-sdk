@@ -1,0 +1,22 @@
+package com.fanap.podSakku.enums;
+
+/**
+ * Created By Askarian on 5/28/2019
+ */
+public enum EnumBaseURLPlatform {
+
+//    SANDBOX("http://sandbox.pod.land"),
+    PRODUCTION("https://api.sakku.cloud");
+
+    private final String value;
+
+    EnumBaseURLPlatform(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return this.value;
+    }
+
+}
+
