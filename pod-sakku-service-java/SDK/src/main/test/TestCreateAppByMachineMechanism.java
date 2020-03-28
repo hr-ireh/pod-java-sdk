@@ -4,7 +4,7 @@ import com.fanap.podSakku.data.modelSrv.ApplicationSrv;
 import com.fanap.podSakku.data.modelSrv.PortMapping;
 import com.fanap.podSakku.data.modelVo.ApplicationImageVo;
 import com.fanap.podSakku.data.modelVo.BaseInfoVo;
-import com.fanap.podSakku.data.modelVo.CreateAppByMachineMechanismVo;
+import com.fanap.podSakku.data.modelVo.CreateAppByStateMachineVo;
 import com.fanap.podSakku.data.modelVo.ResultVo;
 import com.fanap.podSakku.enums.EnumDeployType;
 import com.fanap.podSakku.exception.PodException;
@@ -45,10 +45,10 @@ public class TestCreateAppByMachineMechanism {
         applicationBaseConfig.setCpu(1);
         applicationBaseConfig.setMem(1);
         try {
-            CreateAppByMachineMechanismVo createAppByMachineMechanismVo = new CreateAppByMachineMechanismVo.Builder(baseInfoVo)
+            CreateAppByStateMachineVo createAppByStateMachineVo = new CreateAppByStateMachineVo.Builder(baseInfoVo)
                     .setConfig(applicationBaseConfig)
                     .build();
-            podSakku.createAppByMachineMechanism(createAppByMachineMechanismVo, new OnGetResponseListener<ApplicationSrv>() {
+            podSakku.createAppByStateMachine(createAppByStateMachineVo, new OnGetResponseListener<ApplicationSrv>() {
                 @Override
                 public void onResponse(ResultVo<ApplicationSrv> result) {
                     System.out.println(result.getResult());
@@ -82,9 +82,9 @@ public class TestCreateAppByMachineMechanism {
                 .build();
         PodSakku podSakku = new PodSakku();
         try {
-            CreateAppByMachineMechanismVo createAppByMachineMechanismVo = new CreateAppByMachineMechanismVo.Builder(baseInfoVo)
+            CreateAppByStateMachineVo createAppByStateMachineVo = new CreateAppByStateMachineVo.Builder(baseInfoVo)
                     .build();
-            podSakku.createAppByMachineMechanism(createAppByMachineMechanismVo, new OnGetResponseListener<ApplicationSrv>() {
+            podSakku.createAppByStateMachine(createAppByStateMachineVo, new OnGetResponseListener<ApplicationSrv>() {
                 @Override
                 public void onResponse(ResultVo<ApplicationSrv> result) {
                     System.out.println(result.getResult());

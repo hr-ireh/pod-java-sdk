@@ -1,5 +1,6 @@
 package com.fanap.podSakku.util;
 
+import com.fanap.podSakku.data.modelVo.LogsExportVo;
 import com.fanap.podSakku.exception.PodException;
 import okhttp3.ResponseBody;
 import org.json.JSONObject;
@@ -15,6 +16,15 @@ public class GetResultExportLogs {
     private Call<ResponseBody> call;
     private String responseBody;
     private JSONObject jsonObject;
+    private String path;
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public GetResultExportLogs(String path) {
+        this.path=path;
+    }
 
     public GetResultExportLogs(Call<ResponseBody> call, OnGetResponseListenerExportLogs onGetResponseListener) {
         this.call = call;
@@ -29,9 +39,7 @@ public class GetResultExportLogs {
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     int statusCode = response.code();
                     if (statusCode == 200) {
-                        writeResponseBodyToDisk(response.body());
-//                        Log.d("File download was a success? ", String.valueOf(writtenToDisk));
-
+                        LogsExportVo.writeResponseBodyToDisk(response.body());
                     } else {
                         try {
                             responseBody = response.errorBody().string();
@@ -58,8 +66,8 @@ public class GetResultExportLogs {
 
     private boolean writeResponseBodyToDisk(ResponseBody body) {
         try {
-            // todo change the file location/name according to your needs
-            File futureStudioIconFile = new File("logs.txt");
+            LogsExportVo logsExportVo;
+            File futureStudioIconFile = new File(path);
 
             InputStream inputStream = null;
             OutputStream outputStream = null;
@@ -83,8 +91,6 @@ public class GetResultExportLogs {
                     outputStream.write(fileReader, 0, read);
 
                     fileSizeDownloaded += read;
-
-//                    Log.d("File Download: " , fileSizeDownloaded + " of " + fileSize);
                 }
 
                 outputStream.flush();

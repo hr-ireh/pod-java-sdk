@@ -3,14 +3,14 @@ package com.fanap.podSakku.data.modelVo;
 import com.fanap.podSakku.data.modelSrv.ApplicationBaseConfig;
 import com.fanap.podSakku.exception.PodException;
 
-public class CreateAppByMachineMechanismVo {
+public class CreateAppByStateMachineVo {
     private final static String REQUIRED_PARAMETER_ERROR_MESSAGE = "Authorization , config  are required parameters!";
 
     private BaseInfoVo baseInfoVo;
     private ApplicationBaseConfig config;
 
 
-    public CreateAppByMachineMechanismVo(Builder builder) {
+    public CreateAppByStateMachineVo(Builder builder) {
         this.baseInfoVo = builder.getBaseInfoVo();
         this.config = builder.getConfig();
     }
@@ -50,10 +50,10 @@ public class CreateAppByMachineMechanismVo {
             return this;
         }
 
-        public CreateAppByMachineMechanismVo build() throws PodException {
+        public CreateAppByStateMachineVo build() throws PodException {
             if (this.baseInfoVo != null && this.baseInfoVo.getAuthorization() != null &&
                     this.config != null)
-                return new CreateAppByMachineMechanismVo(this);
+                return new CreateAppByStateMachineVo(this);
             else throw PodException.invalidParameter(REQUIRED_PARAMETER_ERROR_MESSAGE);
         }
     }

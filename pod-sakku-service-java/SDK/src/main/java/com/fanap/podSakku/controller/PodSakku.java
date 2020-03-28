@@ -843,18 +843,18 @@ public class PodSakku {
     /**
      * create App By Machine Mechanism.
      *
-     * @param createAppByMachineMechanismVo
+     * @param createAppByStateMachineVo
      * @param onGetResponseListener         A generic listener based on type of the output for receiving response. If the onGetResponseListenerGetAccessToken is null,
      *                                      InvalidParameterException will be thrown.
      * @return
      * @throws PodException
      */
-    public PodSakku createAppByMachineMechanism(CreateAppByMachineMechanismVo createAppByMachineMechanismVo,
+    public PodSakku createAppByStateMachine(CreateAppByStateMachineVo createAppByStateMachineVo,
                                                 OnGetResponseListener onGetResponseListener)
             throws PodException {
 
         if (onGetResponseListener != null)
-            service.createAppByMachineMechanism(createAppByMachineMechanismVo, onGetResponseListener);
+            service.createAppByStateMachine(createAppByStateMachineVo, onGetResponseListener);
 
         else throw PodException.invalidParameter(MESSAGE);
 

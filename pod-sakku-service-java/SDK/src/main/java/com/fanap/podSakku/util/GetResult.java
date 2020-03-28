@@ -30,6 +30,7 @@ public class GetResult<T> {
 
     public void get() {
         if (onGetResponseListener != null) {
+
             call.enqueue(new Callback<ResultSrv<T>>() {
 
                 @Override

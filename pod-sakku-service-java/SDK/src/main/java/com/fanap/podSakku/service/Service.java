@@ -1,7 +1,6 @@
 package com.fanap.podSakku.service;
 
 import com.fanap.podSakku.data.modelSrv.*;
-import com.fanap.podSakku.data.modelSrv.HealthCheckSrv;
 import com.fanap.podSakku.data.modelVo.*;
 import com.fanap.podSakku.util.*;
 import okhttp3.MediaType;
@@ -62,6 +61,8 @@ public class Service {
         PodSakku service = RetrofitUtil
                 .getInstance()
                 .create(PodSakku.class);
+        GetResultExportLogs getResultExportLogs = new GetResultExportLogs(logsExportVo.getSaveTo());
+        getResultExportLogs.setPath(logsExportVo.getSaveTo());
         new GetResultExportLogs(service.logsExport(
                 logsExportVo.getAppId(),
                 logsExportVo.getToDate(),
@@ -481,7 +482,7 @@ public class Service {
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("text/yaml"), composeFile);
 
-        MultipartBody.Part multipartBody  = MultipartBody.Part.createFormData("composeFile", composeFile.getName(), requestBody);
+        MultipartBody.Part multipartBody = MultipartBody.Part.createFormData("composeFile", composeFile.getName(), requestBody);
 //        RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), createAppByDockerComposeVo.getGlobalConfig());
         PodSakku service = RetrofitUtil
                 .getInstance()
@@ -504,14 +505,14 @@ public class Service {
         ), onGetResponseListener).get();
     }
 
-    public void createAppByMachineMechanism(CreateAppByMachineMechanismVo createAppByMachineMechanismVo,
+    public void createAppByStateMachine(CreateAppByStateMachineVo createAppByStateMachineVo,
                                             OnGetResponseListener onGetResponseListener) {
         PodSakku service = RetrofitUtil
                 .getInstance()
                 .create(PodSakku.class);
-        new GetResult<ApplicationSrv>(service.createAppByMachineMechanism(
-                createAppByMachineMechanismVo.getBaseInfoVo().getAuthorization(),
-                createAppByMachineMechanismVo.getConfig()
+        new GetResult<ApplicationSrv>(service.createAppByStateMachine(
+                createAppByStateMachineVo.getBaseInfoVo().getAuthorization(),
+                createAppByStateMachineVo.getConfig()
         ), onGetResponseListener).get();
     }
 

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by zahra Gholinia on 3/14/2020.
+ * Created by zahra Gholinia on 2/16/2020.
  */
 
 public class App {
@@ -26,7 +26,7 @@ public class App {
 //        getRealTimeDeploy();
 //        logsExport();
 //        getFakeApplicationState();
-//        rebuildApplication();
+        rebuildApplication();
 //        createApplication();
 //        deleteApplication();
 //        updateApplication();
@@ -172,8 +172,9 @@ public class App {
         PodSakku podSakku = new PodSakku();
         try {
             LogsExportVo logsExportVo = new LogsExportVo.Builder()
-                    .setAppId(2338L)
+                    .setAppId(2664L)
                     .setToken(TOKEN)
+                    .setSaveTo("logs1111.txt")
                     .build();
             podSakku.logsExport(logsExportVo, new OnGetResponseListenerExportLogs() {
                 @Override
@@ -255,7 +256,7 @@ public class App {
         ConfigContentVo configContentVo = null;
         try {
             configContentVo = new ConfigContentVo.Builder()
-                    .setName("zahra6")
+                    .setName("z58hkfyjfk")
                     .setMem(1)
                     .setCpu(1)
                     .setScalingMode("OFF")
@@ -1189,7 +1190,7 @@ public class App {
         }
     }
 
-    private static void createAppByMachineMechanism() {
+    private static void createAppByStateMachine() {
         BaseInfoVo baseInfoVo = new BaseInfoVo.Builder()
                 .setAuthorization(TOKEN)
                 .build();
@@ -1210,10 +1211,10 @@ public class App {
         applicationBaseConfig.setCpu(1);
         applicationBaseConfig.setMem(1);
         try {
-            CreateAppByMachineMechanismVo createAppByMachineMechanismVo = new CreateAppByMachineMechanismVo.Builder(baseInfoVo)
+            CreateAppByStateMachineVo createAppByStateMachineVo = new CreateAppByStateMachineVo.Builder(baseInfoVo)
                     .setConfig(applicationBaseConfig)
                     .build();
-            podSakku.createAppByMachineMechanism(createAppByMachineMechanismVo, new OnGetResponseListener<ApplicationSrv>() {
+            podSakku.createAppByStateMachine(createAppByStateMachineVo, new OnGetResponseListener<ApplicationSrv>() {
                 @Override
                 public void onResponse(ResultVo<ApplicationSrv> result) {
                     System.out.println(result.getResult());

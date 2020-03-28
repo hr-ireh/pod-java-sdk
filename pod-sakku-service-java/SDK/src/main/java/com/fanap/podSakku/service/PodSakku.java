@@ -273,7 +273,7 @@ public interface PodSakku {
 
     @Headers("Content-Type:application/json; charset=UTF-8")
     @POST("/app/sm")
-    Call<ResultSrv<ApplicationSrv>> createAppByMachineMechanism(
+    Call<ResultSrv<ApplicationSrv>> createAppByStateMachine(
             @Header("Authorization") String Authorization,
             @Body ApplicationBaseConfig config);
 
