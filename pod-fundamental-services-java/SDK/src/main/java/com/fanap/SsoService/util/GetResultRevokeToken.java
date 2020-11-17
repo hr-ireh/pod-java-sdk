@@ -20,6 +20,10 @@ public class GetResultRevokeToken {
     private OnGetResponseListenerRevokeToken onGetResponseListenerRevokeToken;
     private Call<Void> call;
 
+    public GetResultRevokeToken(Call<Void> call) {
+        this.call = call;
+    }
+
     public GetResultRevokeToken(Call<Void> call, OnGetResponseListenerRevokeToken onGetResponseListenerRevokeToken) {
         this.call = call;
         this.onGetResponseListenerRevokeToken = onGetResponseListenerRevokeToken;
@@ -56,6 +60,25 @@ public class GetResultRevokeToken {
                         onGetResponseListenerRevokeToken.onFailed(PodException.unexpectedException());
                 }
             });
+        }
+    }
+
+    public Void getResponse() throws PodException {
+        try {
+            Response<Void> response = call.execute();
+
+            if (response.code() == 200) {
+                return response.body();
+            } else if (response.errorBody() != null) {
+                ResponseBody responseBody = response.errorBody();
+                ErrorSrv errorSrv = JacksonUtil.getObject(responseBody.string(), ErrorSrv.class);
+                throw PodException.developerException(response.code(), errorSrv.getError() + ". " + errorSrv.getError_description());
+            } else {
+                throw PodException.unexpectedException();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw PodException.unexpectedException();
         }
     }
 }

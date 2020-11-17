@@ -38,8 +38,8 @@ public class ScProductIdPodServicesProduction {
     public static final int NZH_BIZ_ADD_AUTO_SETTLEMENT = 29990;
     public static final int NZH_BIZ_REMOVE_AUTO_SETTLEMENT = 29991;
     public static final int NZH_PAY_ANY_INVOICE_BY_CREDIT = 29821;
-    public static final int SERVICE_CREAT_PRE_INVOICE=30359;
-    public static final int NZH_BIZ_VERIFY_INVOICE=29809;
-    public static final  int NZH_BIZ_REDUSE_INVOICE=29803;
-
+    public static final int SERVICE_CREAT_PRE_INVOICE = 30359;
+    public static final int NZH_BIZ_VERIFY_INVOICE = 29809;
+    public static final int NZH_BIZ_REDUSE_INVOICE = 29803;
+    public static final int NZH_BIZ_invoice_With_Bill_Number = 29797;
 }

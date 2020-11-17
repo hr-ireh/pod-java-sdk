@@ -1,5 +1,6 @@
 package com.fanap.userOperation.controller;
 
+import com.fanap.userOperation.data.modelSrv.CustomerProfileSrv;
 import com.fanap.userOperation.data.modelVo.*;
 import com.fanap.userOperation.exception.PodException;
 import com.fanap.userOperation.service.Service;
@@ -18,12 +19,12 @@ public class UserOperationMethodInvoke {
      *
      * @param getUserProfileVo
      * @param onGetResponseListener A generic listener based on type of the output for receiving response. If the onGetResponseListenerGetAccessToken is null,
-     *                                       InvalidParameterException will be thrown.
+     *                              InvalidParameterException will be thrown.
      * @return
      * @throws PodException
      */
     public UserOperationMethodInvoke getUserProfile(GetUserProfileVo getUserProfileVo,
-                                               OnGetResponseListener onGetResponseListener)
+                                                    OnGetResponseListener onGetResponseListener)
             throws PodException {
 
         if (onGetResponseListener != null)
@@ -34,18 +35,23 @@ public class UserOperationMethodInvoke {
         return this;
     }
 
+    public ResultVo<CustomerProfileSrv> getUserProfile(GetUserProfileVo getUserProfileVo) throws PodException {
+        return service.getUserProfile(getUserProfileVo);
+    }
+
+
     /**
      * Get access token.
      *
      * @param editProfileWithConfirmationVo
-     * @param onGetResponseListener A generic listener based on type of the output for receiving response. If the onGetResponseListenerGetAccessToken is null,
-     *                                       InvalidParameterException will be thrown.
+     * @param onGetResponseListener         A generic listener based on type of the output for receiving response. If the onGetResponseListenerGetAccessToken is null,
+     *                                      InvalidParameterException will be thrown.
      * @return
      * @throws PodException
      */
     public UserOperationMethodInvoke editProfileWithConfirmation(EditProfileWithConfirmationVo
                                                                          editProfileWithConfirmationVo,
-                                                    OnGetResponseListener onGetResponseListener)
+                                                                 OnGetResponseListener onGetResponseListener)
             throws PodException {
 
         if (onGetResponseListener != null)
@@ -62,13 +68,13 @@ public class UserOperationMethodInvoke {
      *
      * @param confirmEditProfileVo
      * @param onGetResponseListener A generic listener based on type of the output for receiving response. If the onGetResponseListenerGetAccessToken is null,
-     *                                       InvalidParameterException will be thrown.
+     *                              InvalidParameterException will be thrown.
      * @return
      * @throws PodException
      */
     public UserOperationMethodInvoke confirmEditProfile(ConfirmEditProfileVo
-                                                                         confirmEditProfileVo,
-                                                                 OnGetResponseListener onGetResponseListener)
+                                                                confirmEditProfileVo,
+                                                        OnGetResponseListener onGetResponseListener)
             throws PodException {
 
         if (onGetResponseListener != null)
@@ -84,12 +90,12 @@ public class UserOperationMethodInvoke {
      *
      * @param listAddressVo
      * @param onGetResponseListener A generic listener based on type of the output for receiving response. If the onGetResponseListenerGetAccessToken is null,
-     *                                       InvalidParameterException will be thrown.
+     *                              InvalidParameterException will be thrown.
      * @return
      * @throws PodException
      */
     public UserOperationMethodInvoke getListAddress(ListAddressVo listAddressVo,
-                                                        OnGetResponseListener onGetResponseListener)
+                                                    OnGetResponseListener onGetResponseListener)
             throws PodException {
 
         if (onGetResponseListener != null)

@@ -1,9 +1,6 @@
 package com.fanap.billingService.enums;
 
 public enum EnumToolCode {
-
-
-
     SETTLEMENT_TOOL_SATNA("SETTLEMENT_TOOL_SATNA"),
     SETTLEMENT_TOOL_PAYA("SETTLEMENT_TOOL_PAYA"),
     SETTLEMENT_TOOL_CARD("SETTLEMENT_TOOL_CARD");

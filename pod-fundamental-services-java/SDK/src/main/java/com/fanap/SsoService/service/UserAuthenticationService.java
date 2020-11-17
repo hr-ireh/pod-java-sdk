@@ -18,7 +18,6 @@ public interface UserAuthenticationService {
             @Query("grant_type") String grant_type,
             @Query("redirect_uri") String redirect_uri,
             @Query("code") String code,
-            @Query("code_verifier") String code_verifier,
             @Query("client_id") String client_id,
             @Query("client_secret") String client_secret);
 
@@ -56,8 +55,8 @@ public interface UserAuthenticationService {
     @Headers("Content-Type:application/x-www-form-urlencoded; charset=UTF-8")
     @POST("/oauth2/clients/handshake/{client_id}")
     Call<HandshakeSrv> handshake(
-            @Path("client_id") String client_id,
             @Header("Authorization") String authorization,
+            @Path("client_id") String client_id,
             @Field("device_uid") String device_uid,
             @Field("device_lat") double device_lat,
             @Field("device_lon") double device_lon,
@@ -77,7 +76,14 @@ public interface UserAuthenticationService {
             @Field("state") String state,
             @Field("referrerType") String referrerType,
             @Field("referrer") String referrer,
-            @Field("scope") String scope);
+            @Field("scope") String scope,
+            @Field("clientId") String clientId,
+            @Field("callbackUri") String callbackUri,
+            @Field("code_challenge") String codeChallenge,
+            @Field("code_challenge_method") String codeChallengeMethod,
+            @Field("identityType") String identityType,
+            @Field("loginAsUserId") String loginAsUserId,
+            @Field("redirectUri") String redirectUri);
 
     @FormUrlEncoded
     @Headers("Content-Type:application/x-www-form-urlencoded; charset=UTF-8")
@@ -96,19 +102,5 @@ public interface UserAuthenticationService {
             @Field("client_id") String client_id,
             @Field("client_secret") String client_secret);
 
-
-
-
-//    @Headers({
-//            "Content-Type: application/x-www-form-urlencoded"
-//    })
-
-//    @FormUrlEncoded
-//    @Headers("Content-Type:application/x-www-form-urlencoded; charset=UTF-8")
-//    @POST("/oauth2/token/revoke")
-//    Call<Void> revokeToken(@Field("token_type_hint") String token_type_hint,
-//                           @Field("token") String token,
-//                           @Field("client_id") String client_id,
-//                           @Field("client_secret") String client_secret);
 
 }

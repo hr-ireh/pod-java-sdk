@@ -3,7 +3,10 @@ package com.fanap.userOperation.service;
 import com.fanap.userOperation.data.modelSrv.AddressSrv;
 import com.fanap.userOperation.data.modelSrv.CustomerProfileSrv;
 import com.fanap.userOperation.data.modelVo.*;
-import com.fanap.userOperation.util.*;
+import com.fanap.userOperation.exception.PodException;
+import com.fanap.userOperation.util.GetResult;
+import com.fanap.userOperation.util.OnGetResponseListener;
+import com.fanap.userOperation.util.RetrofitUtil;
 
 import java.util.List;
 
@@ -28,6 +31,21 @@ public class Service {
                 getUserProfileVo.getBaseInfoVo().getClient_id(),
                 getUserProfileVo.getBaseInfoVo().getClient_secret()
         ), onGetResponseListener).get();
+    }
+
+    public ResultVo<CustomerProfileSrv> getUserProfile(GetUserProfileVo getUserProfileVo) throws PodException {
+
+        UserOperationService service = RetrofitUtil.getInstance().create(UserOperationService.class);
+
+        return new GetResult<>(service.getUserProfile(
+                getUserProfileVo.getBaseInfoVo().getToken(),
+                getUserProfileVo.getBaseInfoVo().getToken_issuer(),
+                getUserProfileVo.getScProductId(),
+                getUserProfileVo.getBaseInfoVo().getScVoucherHash(),
+                getUserProfileVo.getBaseInfoVo().getScApiKey(),
+                getUserProfileVo.getBaseInfoVo().getClient_id(),
+                getUserProfileVo.getBaseInfoVo().getClient_secret()
+        )).getResponse();
     }
 
     public void editProfileWithConfirmation(EditProfileWithConfirmationVo editProfileWithConfirmationVo,
@@ -69,11 +87,8 @@ public class Service {
     }
 
 
-
-
-
     public void confirmEditProfile(ConfirmEditProfileVo confirmEditPrvofileVo,
-                                            OnGetResponseListener onGetResponseListener) {
+                                   OnGetResponseListener onGetResponseListener) {
 
         UserOperationService service = RetrofitUtil
                 .getInstance()
@@ -91,9 +106,8 @@ public class Service {
     }
 
 
-
     public void getListAddress(ListAddressVo listAddressVo,
-                                   OnGetResponseListener onGetResponseListener) {
+                               OnGetResponseListener onGetResponseListener) {
 
         UserOperationService service = RetrofitUtil
                 .getInstance()
@@ -109,6 +123,5 @@ public class Service {
                 listAddressVo.getSize()
         ), onGetResponseListener).get();
     }
-
 
 }

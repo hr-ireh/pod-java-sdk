@@ -1,6 +1,7 @@
 package com.fanap.SsoService.data.modelVo;
 
 import com.fanap.SsoService.exception.PodException;
+import com.fanap.SsoService.util.RSAUtil;
 
 /**
  * Created by Shahab Askarian on 6/19/2019.
@@ -14,9 +15,7 @@ public class VerifyVo {
     private String identity;
 
     public VerifyVo(Builder builder) {
-        this.authorization = "Signature keyId=\"" + builder.getKeyId() +
-                "\",signature=\"" + builder.getSignature() + "\"" +
-                ",headers=\"" + builder.getHeaders() + "\"";
+        this.authorization = builder.getAuthorization();
         this.identity = builder.getIdentity();
         this.otp = builder.getOtp();
     }
@@ -36,9 +35,11 @@ public class VerifyVo {
     public static class Builder {
         private String otp;
         private String identity;
-        private String keyId;
-        private String signature;
-        private String headers;
+        private String authorization;
+
+        public String getAuthorization() {
+            return authorization;
+        }
 
         public String getOtp() {
             return otp;
@@ -47,6 +48,20 @@ public class VerifyVo {
         public Builder setOtp(String otp) {
             this.otp = otp;
             return this;
+        }
+
+        public Builder setAuthorization(String keyId, String privateKey) {
+            String header = "host";
+            String dataToSign = "host: accounts.pod.ir";
+            String signature = null;
+            try {
+                signature = RSAUtil.signSHA256RSA(dataToSign, RSAUtil.XML2PrivateKey(privateKey));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            authorization = "Signature keyId = " + keyId + ",signature =" + signature + ", headers =" + header;
+            return this;
+
         }
 
         public String getIdentity() {
@@ -58,37 +73,9 @@ public class VerifyVo {
             return this;
         }
 
-        public String getKeyId() {
-            return keyId;
-        }
-
-        public Builder setKeyId(String keyId) {
-            this.keyId = keyId;
-            return this;
-        }
-
-        public String getSignature() {
-            return signature;
-        }
-
-        public Builder setSignature(String signature) {
-            this.signature = signature;
-            return this;
-        }
-
-        public String getHeaders() {
-            return headers;
-        }
-
-        public Builder setHeaders(String headers) {
-            this.headers = headers;
-            return this;
-        }
 
         public VerifyVo build() throws PodException {
-            if (this.getHeaders() != null && this.getIdentity() != null &&
-                    this.getKeyId() != null && this.getOtp() != null &&
-                    this.getSignature() != null)
+            if (this.getIdentity() != null && this.authorization != null && this.otp != null)
                 return new VerifyVo(this);
             else throw PodException.invalidParameter(REQUIRED_PARAMETER_ERROR_MESSAGE);
         }

@@ -20,6 +20,10 @@ public class GetResultVerify {
     private OnGetResponseListenerVerify onGetResponseListenerVerify;
     private Call<VerifySrv> call;
 
+    public GetResultVerify(Call<VerifySrv> call) {
+        this.call = call;
+    }
+
     public GetResultVerify(Call call, OnGetResponseListenerVerify getResponseListenerVerify) {
         this.call = call;
         this.onGetResponseListenerVerify = getResponseListenerVerify;
@@ -58,6 +62,25 @@ public class GetResultVerify {
                         onGetResponseListenerVerify.onFailed(PodException.unexpectedException());
                 }
             });
+        }
+    }
+
+    public VerifySrv getResponse() throws PodException {
+        try {
+            Response<VerifySrv> response = call.execute();
+
+            if (response.code() == 200) {
+                return response.body();
+            } else if (response.errorBody() != null) {
+                ResponseBody responseBody = response.errorBody();
+                ErrorSrv errorSrv = JacksonUtil.getObject(responseBody.string(), ErrorSrv.class);
+                throw PodException.developerException(response.code(), errorSrv.getError() + ". " + errorSrv.getError_description());
+            } else {
+                throw PodException.unexpectedException();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw PodException.unexpectedException();
         }
     }
 }

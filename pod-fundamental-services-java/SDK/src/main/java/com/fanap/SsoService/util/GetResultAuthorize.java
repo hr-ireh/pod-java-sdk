@@ -20,6 +20,10 @@ public class GetResultAuthorize {
     private OnGetResponseListenerAuthorize onGetResponseListenerAuthorize;
     private Call<AuthorizeSrv> call;
 
+    public GetResultAuthorize(Call<AuthorizeSrv> call) {
+        this.call = call;
+    }
+
     public GetResultAuthorize(Call call, OnGetResponseListenerAuthorize getResponseListenerAuthorize) {
         this.call = call;
         this.onGetResponseListenerAuthorize = getResponseListenerAuthorize;
@@ -54,6 +58,25 @@ public class GetResultAuthorize {
                         onGetResponseListenerAuthorize.onFailed(PodException.unexpectedException());
                 }
             });
+        }
+    }
+
+    public AuthorizeSrv getResponse() throws PodException {
+        try {
+            Response<AuthorizeSrv> response = call.execute();
+
+            if (response.code() == 200) {
+                return response.body();
+            } else if (response.errorBody() != null) {
+                ResponseBody responseBody = response.errorBody();
+                ErrorSrv errorSrv = JacksonUtil.getObject(responseBody.string(), ErrorSrv.class);
+                throw PodException.developerException(response.code(), errorSrv.getError() + ". " + errorSrv.getError_description());
+            } else {
+                throw PodException.unexpectedException();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw PodException.unexpectedException();
         }
     }
 }

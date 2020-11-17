@@ -1,5 +1,6 @@
 package com.fanap.SsoService.data.modelVo;
 
+import com.fanap.SsoService.enums.EnumRevokeTokenType;
 import com.fanap.SsoService.exception.PodException;
 
 /**
@@ -54,8 +55,8 @@ public class RevokeTokenVo {
             return token_type_hint;
         }
 
-        public Builder setToken_type_hint(String token_type_hint) {
-            this.token_type_hint = token_type_hint;
+        public Builder setToken_type_hint(EnumRevokeTokenType token_type_hint) {
+            this.token_type_hint = token_type_hint.getValue();
             return this;
         }
 

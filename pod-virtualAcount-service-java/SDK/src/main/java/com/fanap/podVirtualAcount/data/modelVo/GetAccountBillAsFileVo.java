@@ -4,7 +4,6 @@ import com.fanap.podBaseService.exception.PodException;
 import com.fanap.podVirtualAcount.util.ScProductIdPodServicesProduction;
 import com.fanap.podVirtualAcount.util.ScProductIdPodServicesSandBox;
 import com.fanap.podBaseService.util.TypeConversionUtil;
-import com.sun.xml.internal.stream.buffer.AttributesHolder;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

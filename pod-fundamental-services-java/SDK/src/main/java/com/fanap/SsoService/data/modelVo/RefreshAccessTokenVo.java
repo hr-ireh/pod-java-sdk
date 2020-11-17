@@ -1,5 +1,6 @@
 package com.fanap.SsoService.data.modelVo;
 
+import com.fanap.SsoService.enums.EnumGrantType;
 import com.fanap.SsoService.exception.PodException;
 
 /**
@@ -55,8 +56,9 @@ public class RefreshAccessTokenVo {
             return grant_type;
         }
 
-        public Builder setGrant_type(String grant_type) {
-            this.grant_type = grant_type;
+        // <param name="grantType">Value must be refresh_token</param>
+        public Builder setGrant_type(EnumGrantType grant_type) {
+            this.grant_type = grant_type.getValue();
             return this;
         }
 

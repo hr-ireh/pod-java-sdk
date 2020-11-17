@@ -1,5 +1,6 @@
 package com.fanap.SsoService.controller;
 
+import com.fanap.SsoService.data.modelSrv.*;
 import com.fanap.SsoService.data.modelVo.*;
 import com.fanap.SsoService.exception.PodException;
 import com.fanap.SsoService.service.Service;
@@ -35,6 +36,9 @@ public class SsoService {
         return this;
     }
 
+    public AuthorizeSrv authorize(AuthorizeVo authorizeVo) throws PodException {
+        return service.authorize(authorizeVo);
+    }
 
     /**
      * Get access token.
@@ -55,6 +59,10 @@ public class SsoService {
         else throw PodException.invalidParameter(MESSAGE);
 
         return this;
+    }
+
+    public VerifySrv verify(VerifyVo verifyVo) throws PodException {
+        return service.verify(verifyVo);
     }
 
     /**
@@ -78,6 +86,10 @@ public class SsoService {
         return this;
     }
 
+    public GetAccessTokenOtpSrv getAccessTokenByOtp(GetAccessTokenByOtpVo getAccessTokenByOtpVo) throws PodException {
+        return service.getAccessTokenOtp(getAccessTokenByOtpVo);
+    }
+
     /**
      * Get access token.
      *
@@ -97,6 +109,10 @@ public class SsoService {
         else throw PodException.invalidParameter(MESSAGE);
 
         return this;
+    }
+
+    public GetAccessTokenSrv getAccessToken(AccessTokenVo accessTokenVo) throws PodException {
+        return service.getAccessToken(accessTokenVo);
     }
 
     /**
@@ -120,6 +136,10 @@ public class SsoService {
         return this;
     }
 
+    public RefreshAccessTokenSrv refreshAccessToken(RefreshAccessTokenVo refreshAccessTokenVo) throws PodException {
+        return service.getAccessTokenUsingRefreshToken(refreshAccessTokenVo);
+    }
+
     /**
      * Get token info.
      *
@@ -139,6 +159,10 @@ public class SsoService {
         else throw PodException.invalidParameter(MESSAGE);
 
         return this;
+    }
+
+    public TokenInfoSrv getTokenInfo(TokenInfoVo tokenInfoVo) throws PodException {
+        return service.tokeInfo(tokenInfoVo);
     }
 
     /**
@@ -162,12 +186,16 @@ public class SsoService {
         return this;
     }
 
+    public void revokeToken(RevokeTokenVo revokeTokenVo) throws PodException {
+        service.revokeToken(revokeTokenVo);
+    }
+
     /**
      * Revoke token.
      *
      * @param handshakeVo
      * @param onGetResponseListenerHandshake A generic listener based on type of the output for receiving response. If the onGetResponseListener is null,
-     *                                         InvalidParameterException will be thrown.
+     *                                       InvalidParameterException will be thrown.
      * @return
      * @throws PodException
      */
@@ -182,9 +210,6 @@ public class SsoService {
 
         return this;
     }
-
-
-
 
 
 }

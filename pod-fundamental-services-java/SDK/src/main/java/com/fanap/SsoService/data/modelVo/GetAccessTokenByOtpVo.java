@@ -1,5 +1,6 @@
 package com.fanap.SsoService.data.modelVo;
 
+import com.fanap.SsoService.enums.EnumGrantType;
 import com.fanap.SsoService.exception.PodException;
 
 /**
@@ -55,8 +56,8 @@ public class GetAccessTokenByOtpVo {
             return grant_type;
         }
 
-        public GetAccessTokenByOtpVo.Builder setGrant_type(String grant_type) {
-            this.grant_type = grant_type;
+        public GetAccessTokenByOtpVo.Builder setGrant_type(EnumGrantType grant_type) {
+            this.grant_type = grant_type.getValue();
             return this;
         }
 

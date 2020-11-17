@@ -38,9 +38,8 @@ public class ScProductIdPodServicesSandBox {
     public static final int NZH_BIZ_ADD_AUTO_SETTLEMENT = 39376;
     public static final int NZH_BIZ_REMOVE_AUTO_SETTLEMENT = 39377;
     public static final int NZH_PAY_ANY_INVOICE_BY_CREDIT = 39317;
-    public static final int SERVICE_CREAT_PRE_INVOICE=30359;//////
-    public static final int NZH_BIZ_VERIFY_INVOICE=39304;
-    public static final  int NZH_BIZ_REDUSE_INVOICE=39298;
-
-
+    public static final int SERVICE_CREAT_PRE_INVOICE = 30359;//////
+    public static final int NZH_BIZ_VERIFY_INVOICE = 39304;
+    public static final int NZH_BIZ_REDUSE_INVOICE = 39298;
+    public static final int NZH_BIZ_invoice_With_Bill_Number = 0000;
 }

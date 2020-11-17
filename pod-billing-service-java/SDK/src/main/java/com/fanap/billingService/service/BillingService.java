@@ -727,4 +727,27 @@ public interface BillingService {
             @Field("preferredTaxRate") String preferredTaxRate
     );
 
+    @FormUrlEncoded
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=UTF-8")
+    @POST("nzh/doServiceCall")
+    Call<ResultSrv<InvoiceWithBillNumberSrv>> invoiceWithBillNumber(
+            @Field("_token_") String token,
+            @Field("_token_issuer_") String tokenIssuer,
+            @Field("scProductId") String scProductId,
+            @Field("scVoucherHash") List<String> scVoucherHash,
+            @Field("scApiKey") String scApiKey,
+            @Field("billNumber") String billNumber,
+            @Field("productId[]") List<String> productId,
+            @Field("price[]") List<String> price,
+            @Field("quantity[]") List<String> quantity,
+            @Field("productDescription[]") List<String> productDescription,
+            @Field("guildCode") String guildCode,
+            @Field("redirectURL") String redirectURL,
+            @Field("userId") String userId,
+            @Field("description") String description,
+            @Field("deadline") String deadline,
+            @Field("currencyCode") String currencyCode,
+            @Field("addressId") String addressId,
+            @Field("verificationNeeded") String verificationNeeded
+    );
 }

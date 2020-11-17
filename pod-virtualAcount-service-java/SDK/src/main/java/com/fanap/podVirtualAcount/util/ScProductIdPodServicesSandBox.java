@@ -21,5 +21,9 @@ public class ScProductIdPodServicesSandBox {
     public static final int NZH_BIZ_GET_ACCOUNT_BILL_AS_FILE = 42600;
     public static final int NZH_BIZ_CARD_TO_CARD_LIST = 42601;
     public static final int NZH_BIZ_UPDATE_CARD_TO_CARD = 42602;
-
+    public static final int NZH_BIZ_ADD_CARD = 60690;
+    public static final int NZH_BIZ_ADD_SHEBA = 60692;
+    public static final int NZH_BIZ_SHEBA_LIST = 60693;
+    public static final int NZH_BIZ_CARD_LIST = 60695;
+    public static final int NZH_BIZ_BUSINESS_BALANCE = 60694;
 }

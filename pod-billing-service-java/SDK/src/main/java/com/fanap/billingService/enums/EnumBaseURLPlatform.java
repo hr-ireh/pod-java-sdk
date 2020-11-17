@@ -4,9 +4,8 @@ package com.fanap.billingService.enums;
  * Created By Askarian on 5/28/2019
  */
 public enum EnumBaseURLPlatform {
-
-    SANDBOX("http://sandbox.pod.ir/srv/basic-platform/"),
-    PRODUCTION("https://api.pod.ir/srv/core/");
+    SANDBOX("https://api.pod.ir/srv/sc/"),
+    PRODUCTION("http://sandbox.pod.ir/srv/sc/");
 
     private final String value;
 
@@ -17,6 +16,4 @@ public enum EnumBaseURLPlatform {
     public String getValue() {
         return this.value;
     }
-
 }
-

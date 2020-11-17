@@ -20,6 +20,10 @@ public class GetResultTokenInfo {
     private OnGetResponseListenerGetTokenInfo onGetResponseListenerGetTokenInfo;
     private Call<TokenInfoSrv> call;
 
+    public GetResultTokenInfo(Call<TokenInfoSrv> call) {
+        this.call = call;
+    }
+
     public GetResultTokenInfo(Call call, OnGetResponseListenerGetTokenInfo onGetResponseListenerGetTokenInfo) {
         this.call = call;
         this.onGetResponseListenerGetTokenInfo = onGetResponseListenerGetTokenInfo;
@@ -54,6 +58,25 @@ public class GetResultTokenInfo {
                         onGetResponseListenerGetTokenInfo.onFailed(PodException.unexpectedException());
                 }
             });
+        }
+    }
+
+    public TokenInfoSrv getResponse() throws PodException {
+        try {
+            Response<TokenInfoSrv> response = call.execute();
+
+            if (response.code() == 200) {
+                return response.body();
+            } else if (response.errorBody() != null) {
+                ResponseBody responseBody = response.errorBody();
+                ErrorSrv errorSrv = JacksonUtil.getObject(responseBody.string(), ErrorSrv.class);
+                throw PodException.developerException(response.code(), errorSrv.getError() + ". " + errorSrv.getError_description());
+            } else {
+                throw PodException.unexpectedException();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw PodException.unexpectedException();
         }
     }
 }

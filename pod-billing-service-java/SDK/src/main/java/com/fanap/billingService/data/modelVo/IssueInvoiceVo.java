@@ -4,9 +4,7 @@ import com.fanap.billingService.exception.PodException;
 import com.fanap.billingService.util.ScProductIdPodServicesProduction;
 import com.fanap.billingService.util.ScProductIdPodServicesSandBox;
 import com.fanap.podBaseService.util.TypeConversionUtil;
-import com.google.gson.Gson;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -185,7 +183,7 @@ public class IssueInvoiceVo {
         this.preview = TypeConversionUtil.booleanToString(builder.getPreview());
         this.metadata = builder.getMetadata();
         this.safe = TypeConversionUtil.booleanToString(builder.getSafe());
-        this.postVoucherEnabled =TypeConversionUtil.booleanToString(builder.getPostVoucherEnabled());
+        this.postVoucherEnabled = TypeConversionUtil.booleanToString(builder.getPostVoucherEnabled());
         this.hasEvent = TypeConversionUtil.booleanToString(builder.getHasEvent());
         this.eventTitle = builder.getEventTitle();
         this.eventTimeZone = builder.getEventTimeZone();

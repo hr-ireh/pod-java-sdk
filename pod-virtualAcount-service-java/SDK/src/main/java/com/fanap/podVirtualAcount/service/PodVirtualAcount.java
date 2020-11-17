@@ -344,4 +344,64 @@ public interface PodVirtualAcount {
             @Field("scApiKey") String scApiKey,
             @Field("id") String id,
             @Field("cardNumber") String cardNumber);
+
+    @FormUrlEncoded
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=UTF-8")
+    @POST("nzh/doServiceCall")
+    Call<ResultSrv<Void>> addCard(
+            @Header("_token_") String token,
+            @Header("_token_issuer_") String token_issuer,
+            @Field("scProductId") String scProductId,
+            @Field("cardNumber") String cardNumber,
+            @Field("name") String name,
+            @Field("tag") String tag,
+            @Field("cvv2") String cvv2,
+            @Field("expiryMonth") String expiryMonth,
+            @Field("order") String order);
+
+    @FormUrlEncoded
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=UTF-8")
+    @POST("nzh/doServiceCall")
+    Call<ResultSrv<Void>> addSheba(
+            @Header("_token_") String token,
+            @Header("_token_issuer_") String token_issuer,
+            @Field("scProductId") String scProductId,
+            @Field("sheba") String sheba,
+            @Field("name") String name);
+
+    @FormUrlEncoded
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=UTF-8")
+    @POST("nzh/doServiceCall")
+    Call<ResultSrv<List<CardListSrv>>> cardList(
+            @Header("_token_") String token,
+            @Header("_token_issuer_") String token_issuer,
+            @Field("scProductId") String scProductId,
+            @Field("offset") String offset,
+            @Field("size") String size,
+            @Field("cardNumber") String cardNumber,
+            @Field("id") String id,
+            @Field("name") String name,
+            @Field("tag") String tag);
+
+    @FormUrlEncoded
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=UTF-8")
+    @POST("nzh/doServiceCall")
+    Call<ResultSrv<List<ShebaListSrv>>> shebaList(
+            @Header("_token_") String token,
+            @Header("_token_issuer_") String token_issuer,
+            @Field("scProductId") String scProductId,
+            @Field("offset") String offset,
+            @Field("size") String size,
+            @Field("id") String id,
+            @Field("sheba") String sheba,
+            @Field("name") String name);
+
+    @FormUrlEncoded
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=UTF-8")
+    @POST("nzh/doServiceCall")
+    Call<ResultSrv<UserAmountSrv>> businessBalance(
+            @Header("_token_") String token,
+            @Header("_token_issuer_") String token_issuer,
+            @Field("scProductId") String scProductId,
+            @Field("guildCode") String guildCode);
 }

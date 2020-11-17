@@ -5,8 +5,6 @@ package com.fanap.billingService.exception;
  */
 
 class PodExceptionConsts {
-
     static final int UNEXPECTED_EXCEPTION = 888;
     static final int INVALID_PARAMETER = 887;
 }
-

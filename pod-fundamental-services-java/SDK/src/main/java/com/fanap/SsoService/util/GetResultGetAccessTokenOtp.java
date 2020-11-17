@@ -20,6 +20,10 @@ public class GetResultGetAccessTokenOtp {
     private OnGetResponseListenerGetAccessTokenOtp onGetResponseListenerGetAccessTokenOtp;
     private Call<GetAccessTokenOtpSrv> call;
 
+    public GetResultGetAccessTokenOtp(Call<GetAccessTokenOtpSrv> call) {
+        this.call = call;
+    }
+
     public GetResultGetAccessTokenOtp(Call call, OnGetResponseListenerGetAccessTokenOtp onGetResponseListenerGetAccessTokenOtp) {
         this.call = call;
         this.onGetResponseListenerGetAccessTokenOtp = onGetResponseListenerGetAccessTokenOtp;
@@ -54,6 +58,25 @@ public class GetResultGetAccessTokenOtp {
                         onGetResponseListenerGetAccessTokenOtp.onFailed(PodException.unexpectedException());
                 }
             });
+        }
+    }
+
+    public GetAccessTokenOtpSrv getResponse() throws PodException {
+        try {
+            Response<GetAccessTokenOtpSrv> response = call.execute();
+
+            if (response.code() == 200) {
+                return response.body();
+            } else if (response.errorBody() != null) {
+                ResponseBody responseBody = response.errorBody();
+                ErrorSrv errorSrv = JacksonUtil.getObject(responseBody.string(), ErrorSrv.class);
+                throw PodException.developerException(response.code(), errorSrv.getError() + ". " + errorSrv.getError_description());
+            } else {
+                throw PodException.unexpectedException();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw PodException.unexpectedException();
         }
     }
 }

@@ -20,6 +20,10 @@ public class GetResultHandshake {
     private OnGetResponseListenerHandshake onGetResponseListenerHandshake;
     private Call<HandshakeSrv> call;
 
+    public GetResultHandshake(Call<HandshakeSrv> call) {
+        this.call = call;
+    }
+
     public GetResultHandshake(Call call, OnGetResponseListenerHandshake getResponseListenerHandshake) {
         this.call = call;
         this.onGetResponseListenerHandshake = getResponseListenerHandshake;
@@ -58,6 +62,25 @@ public class GetResultHandshake {
                         onGetResponseListenerHandshake.onFailed(PodException.unexpectedException());
                 }
             });
+        }
+    }
+
+    public HandshakeSrv getResponse() throws PodException {
+        try {
+            Response<HandshakeSrv> response = call.execute();
+
+            if (response.code() == 200) {
+                return response.body();
+            } else if (response.errorBody() != null) {
+                ResponseBody responseBody = response.errorBody();
+                ErrorSrv errorSrv = JacksonUtil.getObject(responseBody.string(), ErrorSrv.class);
+                throw PodException.developerException(response.code(), errorSrv.getError() + ". " + errorSrv.getError_description());
+            } else {
+                throw PodException.unexpectedException();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw PodException.unexpectedException();
         }
     }
 }

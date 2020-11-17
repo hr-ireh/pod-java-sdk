@@ -45,7 +45,7 @@ public class JacksonUtil {
         }
     }
 
-    public static <B> B getObject(String json, Class<B> mainClass , Class[] parametricClasses) {
+    public static <B> B getObject(String json, Class<B> mainClass, Class[] parametricClasses) {
         JavaType type = mapper.getTypeFactory().constructParametricType(mainClass, parametricClasses);
         try {
             return mapper.readValue(json, type);
@@ -61,7 +61,6 @@ public class JacksonUtil {
             throw new RuntimeException(e);
         }
     }
-
 
     public static <T> T getObject(String json, TypeReference<T> typeReference) {
         try {

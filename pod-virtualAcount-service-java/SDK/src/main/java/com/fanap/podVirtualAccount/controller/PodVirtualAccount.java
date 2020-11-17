@@ -1,19 +1,20 @@
 package com.fanap.podVirtualAccount.controller;
 
 import com.fanap.podBaseService.exception.PodException;
+import com.fanap.podVirtualAccount.data.modelSrv.*;
 import com.fanap.podVirtualAccount.data.modelVo.*;
 import com.fanap.podVirtualAccount.service.Service;
 import com.fanap.podVirtualAccount.util.OnGetResponseListener;
+
+import java.util.List;
 
 /**
  * Created by Zahra Golinia on 2/4/2020.
  */
 
 public class PodVirtualAccount {
-
     private static final String MESSAGE = "onGetResponseListener can not be null!";
     private static Service service = new Service();
-
 
     /**
      * issue Credit Invoice And Get Hash.
@@ -34,6 +35,10 @@ public class PodVirtualAccount {
         else throw PodException.invalidParameter(MESSAGE);
 
         return this;
+    }
+
+    public ResultVo<String> issueCreditInvoiceAndGetHash(IssueCreditInvoiceAndGetHashVo issueCreditInvoiceAndGetHashVo) throws PodException {
+        return service.issueCreditInvoiceAndGetHash(issueCreditInvoiceAndGetHashVo);
     }
 
     /**
@@ -57,6 +62,10 @@ public class PodVirtualAccount {
         return this;
     }
 
+    public ResultVo<CreditInvoiceSrv> verifyCreditInvoice(VerifyCreditInvoiceVo verifyCreditInvoiceVo) throws PodException {
+        return service.verifyCreditInvoice(verifyCreditInvoiceVo);
+    }
+
     /**
      * transfer From Own Accounts.
      *
@@ -78,6 +87,9 @@ public class PodVirtualAccount {
         return this;
     }
 
+    public ResultVo<UserAmountSrv> transferFromOwnAccounts(TransferFromOwnAccountsVo transferFromOwnAccountsVo) throws PodException {
+        return service.transferFromOwnAccounts(transferFromOwnAccountsVo);
+    }
 
     /**
      * transfer From Own Accounts List.
@@ -98,6 +110,10 @@ public class PodVirtualAccount {
         else throw PodException.invalidParameter(MESSAGE);
 
         return this;
+    }
+
+    public ResultVo<List<TransferCreditSrv>> transferFromOwnAccountsList(TransferFromOwnAccountsListVo transferFromOwnAccountsListVo) throws PodException {
+        return service.transferFromOwnAccountsList(transferFromOwnAccountsListVo);
     }
 
     /**
@@ -121,6 +137,10 @@ public class PodVirtualAccount {
         return this;
     }
 
+    public ResultVo<TransferToContactSrv> transferToContact(TransferToContactVo transferToContactVo) throws PodException {
+        return service.transferToContact(transferToContactVo);
+    }
+
     /**
      * transfer To Contact List.
      *
@@ -142,6 +162,9 @@ public class PodVirtualAccount {
         return this;
     }
 
+    public ResultVo<List<TransferToContactSrv>> transferToContactList(TransferToContactListVo transferToContactListVo) throws PodException {
+        return service.transferToContactList(transferToContactListVo);
+    }
 
     /**
      * follow.
@@ -164,6 +187,9 @@ public class PodVirtualAccount {
         return this;
     }
 
+    public ResultVo<Boolean> follow(FollowVo followVo) throws PodException {
+        return service.follow(followVo);
+    }
 
     /**
      * follow.
@@ -184,6 +210,10 @@ public class PodVirtualAccount {
         else throw PodException.invalidParameter(MESSAGE);
 
         return this;
+    }
+
+    public ResultVo<BusinessSrv> getBusiness(GetBusinessVo getBusinessVo) throws PodException {
+        return service.getBusiness(getBusinessVo);
     }
 
     /**
@@ -207,6 +237,9 @@ public class PodVirtualAccount {
         return this;
     }
 
+    public ResultVo<List<UserSrv>> getFollowers(GetFollowersVo getFollowersVo) throws PodException {
+        return service.getFollowers(getFollowersVo);
+    }
 
     /**
      * transfer To Follower.
@@ -229,6 +262,9 @@ public class PodVirtualAccount {
         return this;
     }
 
+    public ResultVo<UserAmountSrv> transferToFollower(TransferToFollowerVo transferToFollowerVo) throws PodException {
+        return service.transferToFollower(transferToFollowerVo);
+    }
 
     /**
      * transfer To Follower List.
@@ -251,6 +287,9 @@ public class PodVirtualAccount {
         return this;
     }
 
+    public ResultVo<List<TransferToFollowerSrv>> transferToFollowerList(TransferToFollowerListVo transferToFollowerListVo) throws PodException {
+        return service.transferToFollowerList(transferToFollowerListVo);
+    }
 
     /**
      * transfer To Follower And Cashout.
@@ -271,6 +310,10 @@ public class PodVirtualAccount {
         else throw PodException.invalidParameter(MESSAGE);
 
         return this;
+    }
+
+    public ResultVo<UserAmountSrv> transferToFollowerAndCashout(TransferToFollowerAndCashoutVo transferToFollowerAndCashoutVo) throws PodException {
+        return service.transferToFollowerAndCashout(transferToFollowerAndCashoutVo);
     }
 
     /**
@@ -294,6 +337,10 @@ public class PodVirtualAccount {
         return this;
     }
 
+    public ResultVo<UserAmountSrv> transferByInvoice(TransferByInvoiceVo transferByInvoiceVo) throws PodException {
+        return service.transferByInvoice(transferByInvoiceVo);
+    }
+
     /**
      * list Transfer By Invoice.
      *
@@ -313,6 +360,10 @@ public class PodVirtualAccount {
         else throw PodException.invalidParameter(MESSAGE);
 
         return this;
+    }
+
+    public ResultVo<List<TransferToFollowerSrv>> listTransferByInvoice(ListTransferByInvoiceVo listTransferByInvoiceVo) throws PodException {
+        return service.listTransferByInvoice(listTransferByInvoiceVo);
     }
 
     /**
@@ -336,6 +387,10 @@ public class PodVirtualAccount {
         return this;
     }
 
+    public ResultVo<List<AccountBillItemSrv>> getGuildAccountBill(GetGuildAccountBillVo getGuildAccountBillVo) throws PodException {
+        return service.getGuildAccountBill(getGuildAccountBillVo);
+    }
+
     /**
      * get Account Bill.
      *
@@ -357,6 +412,9 @@ public class PodVirtualAccount {
         return this;
     }
 
+    public ResultVo<List<AccountBillItemSrv>> getWalletAccountBill(GetWalletAccountBillVo getWalletAccountBillVo) throws PodException {
+        return service.getWalletAccountBill(getWalletAccountBillVo);
+    }
 
     /**
      * get Account Bill As File.
@@ -377,6 +435,10 @@ public class PodVirtualAccount {
         else throw PodException.invalidParameter(MESSAGE);
 
         return this;
+    }
+
+    public ResultVo<ExportServiceSrv> getAccountBillAsFile(GetAccountBillAsFileVo getAccountBillAsFileVo) throws PodException {
+        return service.getAccountBillAsFile(getAccountBillAsFileVo);
     }
 
     /**
@@ -400,6 +462,10 @@ public class PodVirtualAccount {
         return this;
     }
 
+    public ResultVo<List<CardToCardPoolSrv>> cardToCardList(CardToCardListVo cardToCardListVo) throws PodException {
+        return service.cardToCardList(cardToCardListVo);
+    }
+
     /**
      * update Card To Card.
      *
@@ -419,6 +485,10 @@ public class PodVirtualAccount {
         else throw PodException.invalidParameter(MESSAGE);
 
         return this;
+    }
+
+    public ResultVo<List<CardToCardPoolSrv>> updateCardToCard(UpdateCardToCardVo updateCardToCardVo) throws PodException {
+        return service.updateCardToCard(updateCardToCardVo);
     }
 
     /**
@@ -442,6 +512,10 @@ public class PodVirtualAccount {
         return this;
     }
 
+    public ResultVo<WithdrawRuleSrv> addWithdrawRulePlan(AddWithdrawRulePlanVo addWithdrawRulePlanVo) throws PodException {
+        return service.addWithdrawRulePlan(addWithdrawRulePlanVo);
+    }
+
     /**
      * with draw Rule Plan List.
      *
@@ -461,6 +535,10 @@ public class PodVirtualAccount {
         else throw PodException.invalidParameter(MESSAGE);
 
         return this;
+    }
+
+    public ResultVo<List<WithdrawRulePlanSrv>> withdrawRulePlanList(WithdrawRulePlanListVo withdrawRulePlanListVo) throws PodException {
+        return service.withdrawRulePlanList(withdrawRulePlanListVo);
     }
 
     /**
@@ -484,6 +562,9 @@ public class PodVirtualAccount {
         return this;
     }
 
+    public ResultVo<List<WithdrawRuleForBizSrv>> withdrawRuleList(WithdrawRuleListVo withdrawRulePlanListVo) throws PodException {
+        return service.withdrawRuleList(withdrawRulePlanListVo);
+    }
 
     /**
      * with draw Rule List.
@@ -503,6 +584,10 @@ public class PodVirtualAccount {
         else throw PodException.invalidParameter(MESSAGE);
 
         return this;
+    }
+
+    public ResultVo<Boolean> revokeWithdrawRule(RevokeWithdrawRuleVo revokeWithdrawRuleVo) throws PodException {
+        return service.revokeWithdrawRule(revokeWithdrawRuleVo);
     }
 
     /**
@@ -525,6 +610,10 @@ public class PodVirtualAccount {
         return this;
     }
 
+    public ResultVo<Boolean> payInvoiceByCredit(PayInvoiceByCreditVo payInvoiceByCreditVo) throws PodException {
+        return service.payInvoiceByCredit(payInvoiceByCreditVo);
+    }
+
     /**
      * with draw Rule Usage Report.
      *
@@ -545,4 +634,7 @@ public class PodVirtualAccount {
         return this;
     }
 
+    public ResultVo<WithdrawRuleUsageReportSrv> withdrawRuleUsageReport(WithdrawRuleUsageReportVo withdrawRuleUsageReportVo) throws PodException {
+        return service.withdrawRuleUsageReport(withdrawRuleUsageReportVo);
+    }
 }

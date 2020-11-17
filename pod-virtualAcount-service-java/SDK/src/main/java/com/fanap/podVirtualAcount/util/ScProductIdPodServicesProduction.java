@@ -21,6 +21,9 @@ public class ScProductIdPodServicesProduction {
     public static final int NZH_BIZ_GET_ACCOUNT_BILL_AS_FILE = 34992;
     public static final int NZH_BIZ_CARD_TO_CARD_LIST = 34993;
     public static final int NZH_BIZ_UPDATE_CARD_TO_CARD = 34994;
-
-
+    public static final int NZH_BIZ_ADD_CARD = 47778;
+    public static final int NZH_BIZ_ADD_SHEBA = 46871;
+    public static final int NZH_BIZ_SHEBA_LIST = 48329;
+    public static final int NZH_BIZ_CARD_LIST = 48331;
+    public static final int NZH_BIZ_BUSINESS_BALANCE = 39634;
 }

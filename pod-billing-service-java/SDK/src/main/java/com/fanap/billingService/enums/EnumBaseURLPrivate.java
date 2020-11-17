@@ -4,7 +4,6 @@ package com.fanap.billingService.enums;
  * Created By Askarian on 5/28/2019
  */
 public enum EnumBaseURLPrivate {
-
     SANDBOX("https://sandbox.pod.ir:1033"),
     PRODUCTION("https://pay.pod.ir");
 
@@ -17,6 +16,4 @@ public enum EnumBaseURLPrivate {
     public String getValue() {
         return this.value;
     }
-
 }
-
