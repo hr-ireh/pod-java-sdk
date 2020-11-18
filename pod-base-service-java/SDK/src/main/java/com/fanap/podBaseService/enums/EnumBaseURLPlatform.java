@@ -5,8 +5,8 @@ package com.fanap.podBaseService.enums;
  */
 public enum EnumBaseURLPlatform {
 
-    SANDBOX("https://api.pod.ir/srv/sc/"),
-    PRODUCTION("http://sandbox.pod.ir/srv/sc/");
+    SANDBOX("http://sandbox.pod.ir/srv/sc/"),
+    PRODUCTION("https://api.pod.ir/srv/sc/");
 
     private final String value;
 
