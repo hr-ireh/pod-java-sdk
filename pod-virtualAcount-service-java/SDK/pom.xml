@@ -7,7 +7,7 @@
     <groupId>com.fanap.podVirtualAccount</groupId>
     <artifactId>PodVirtualAccount</artifactId>
     <packaging>jar</packaging>
-    <version>2.0.0.0</version>
+    <version>2.0.0.1</version>
     <name>PodVirtualAccount</name>
 
     <properties>

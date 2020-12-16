@@ -80,7 +80,8 @@ public class GetResult<T> {
                     resultVo.setAggregations(resultSrv.getAggregations());
                     return resultVo;
                 } else {
-                    throw PodException.developerException(resultSrv.getErrorCode(), resultSrv.getMessage());
+                    String referenceNumber = resultSrv.getReferenceNumber() != null && resultSrv.getReferenceNumber().length() > 0 ? "\nشناسه پیگیری:" + resultSrv.getReferenceNumber() : "";
+                    throw PodException.developerException(resultSrv.getErrorCode(), resultSrv.getMessage() + referenceNumber);
                 }
             } else if (response.errorBody() != null) {
                 ResponseBody responseBody = response.errorBody();
